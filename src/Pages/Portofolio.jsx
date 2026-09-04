@@ -217,6 +217,11 @@ const certificatesData = [
     Img: "/certificates/mongodb-introduction.png",
     Title: "Introduction to MongoDB",
   },
+   {
+    id: 6,
+    Img: "/certificates/aws-certified-ai-practitioner.png",
+    Title: "AWS Certified AI Practitioner",
+  },
 ];
 
 

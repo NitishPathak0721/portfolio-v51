@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback, memo } from "react"
-import { Helmet } from "react-helmet-async"
+import React, { useState, useEffect, useCallback, memo } from "react";
+import { Helmet } from "react-helmet-async";
 import {
   Github,
   Linkedin,
@@ -7,11 +7,14 @@ import {
   ExternalLink,
   Code2,
   BarChart3,
-  Sparkles
-} from "lucide-react"
-import AOS from "aos"
-import "aos/dist/aos.css"
+  Sparkles,
+} from "lucide-react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
+/* =========================
+   STATUS BADGE
+========================= */
 
 const StatusBadge = memo(() => (
   <div
@@ -20,25 +23,27 @@ const StatusBadge = memo(() => (
     data-aos-delay="400"
   >
     <div className="relative group">
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full blur opacity-30 group-hover:opacity-60 transition duration-700" />
 
-      <div className="relative px-3 sm:px-4 py-2 rounded-full bg-black/40 backdrop-blur-xl border border-white/10">
+      <div className="relative px-3 sm:px-4 py-2 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 group-hover:border-white/20 transition-all duration-300">
         <span className="bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-transparent bg-clip-text sm:text-sm text-[0.7rem] font-medium flex items-center">
           <Sparkles className="sm:w-4 sm:h-4 w-3 h-3 mr-2 text-blue-400" />
-          Ready to Innovate
+          Building Digital Experiences
         </span>
       </div>
     </div>
   </div>
-))
+));
 
+/* =========================
+   MAIN TITLE
+========================= */
 
 const MainTitle = memo(() => (
   <div className="space-y-2" data-aos="fade-up" data-aos-delay="600">
     <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
-
       <span className="relative inline-block">
-        <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
+        <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20" />
 
         <span className="relative bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
           Frontend
@@ -48,37 +53,42 @@ const MainTitle = memo(() => (
       <br />
 
       <span className="relative inline-block mt-2">
-        <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
+        <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20" />
 
         <span className="relative bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">
           Developer
         </span>
       </span>
-
     </h1>
   </div>
-))
+));
 
+/* =========================
+   TECH STACK
+========================= */
 
 const TechStack = memo(({ tech }) => (
-  <div className="px-4 py-2 hidden sm:block rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-gray-300 hover:bg-white/10 transition-colors">
+  <div className="px-4 py-2 hidden sm:block rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-gray-300 hover:bg-white/10 hover:border-white/20 hover:-translate-y-0.5 transition-all duration-300">
     {tech}
   </div>
-))
+));
 
+/* =========================
+   CTA BUTTON
+========================= */
 
 const CTAButton = memo(({ href, text, icon: Icon }) => (
-  <a href={href}>
-    <button className="group relative w-[160px]">
+  <a href={href} className="inline-block">
+    <button
+      className="group relative w-[160px] focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400/60 rounded-xl"
+      type="button"
+    >
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700" />
 
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
-
-      <div className="relative h-11 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
-
-        <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
+      <div className="relative h-11 bg-[#030014]/90 backdrop-blur-xl rounded-xl border border-white/10 leading-none overflow-hidden transition-all duration-300 group-hover:border-white/20 group-hover:-translate-y-0.5">
+        <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20" />
 
         <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
-
           <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
             {text}
           </span>
@@ -90,13 +100,15 @@ const CTAButton = memo(({ href, text, icon: Icon }) => (
                 : "group-hover:rotate-45"
             } transform transition-all duration-300 z-10`}
           />
-
         </span>
       </div>
     </button>
   </a>
-))
+));
 
+/* =========================
+   SOCIAL LINK
+========================= */
 
 const SocialLink = memo(({ icon: Icon, link, label }) => (
   <a
@@ -104,221 +116,210 @@ const SocialLink = memo(({ icon: Icon, link, label }) => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
+    className="inline-block"
   >
     <button
-      className="group relative p-3"
+      className="group relative p-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400/50 rounded-xl"
       aria-label={label}
+      type="button"
     >
+      <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300" />
 
-      <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
-
-      <div className="relative rounded-xl bg-black/50 backdrop-blur-xl p-2 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-all duration-300">
-
-        <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-
+      <div className="relative rounded-xl bg-black/50 backdrop-blur-xl p-2 flex items-center justify-center border border-white/10 group-hover:border-white/20 group-hover:-translate-y-0.5 transition-all duration-300">
+        <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-300" />
       </div>
     </button>
   </a>
-))
+));
 
+/* =========================
+   TYPING SETTINGS
+========================= */
 
-const TYPING_SPEED = 100
-const ERASING_SPEED = 50
-const PAUSE_DURATION = 2000
-
+const TYPING_SPEED = 100;
+const ERASING_SPEED = 50;
+const PAUSE_DURATION = 2000;
 
 const WORDS = [
   "Frontend Developer",
   "Software Developer",
-  "Tech Enthusiast"
-]
+  "Tech Enthusiast",
+];
 
+/* =========================
+   TECH STACK DATA
+========================= */
 
 const TECH_STACK = [
   "React",
   "JavaScript",
   "Node.js",
-  "Tailwind"
-]
+  "Tailwind",
+];
 
+/* =========================
+   SOCIAL LINKS DATA
+========================= */
 
 const SOCIAL_LINKS = [
   {
     icon: Github,
     link: "https://github.com/NitishPathak0721",
-    label: "GitHub Profile"
+    label: "GitHub Profile",
   },
   {
     icon: Linkedin,
     link: "https://www.linkedin.com/in/nitish-pathak-994006386/",
-    label: "LinkedIn Profile"
+    label: "LinkedIn Profile",
   },
   {
     icon: Code2,
     link: "https://leetcode.com/u/Nitish_Pathak12/",
-    label: "LeetCode Profile"
+    label: "LeetCode Profile",
   },
   {
     icon: BarChart3,
     link: "https://codolio.com/profile/oupPqHSWU",
-    label: "Codolio Profile"
-  }
-]
+    label: "Codolio Profile",
+  },
+];
 
+/* =========================
+   HOME
+========================= */
 
 const Home = () => {
+  const [text, setText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
-  const [text, setText] = useState("")
-  const [isTyping, setIsTyping] = useState(true)
-  const [wordIndex, setWordIndex] = useState(0)
-  const [charIndex, setCharIndex] = useState(0)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [isHovering, setIsHovering] = useState(false)
-
+  /* =========================
+     AOS
+  ========================= */
 
   useEffect(() => {
-
     const initAOS = () => {
-
       AOS.init({
         once: true,
-        offset: 10
-      })
+        offset: 10,
+      });
+    };
 
-    }
+    initAOS();
 
-    initAOS()
+    window.addEventListener("resize", initAOS);
 
-    window.addEventListener("resize", initAOS)
+    return () => {
+      window.removeEventListener("resize", initAOS);
+    };
+  }, []);
 
-    return () =>
-      window.removeEventListener("resize", initAOS)
-
-  }, [])
-
+  /* =========================
+     PAGE LOAD
+  ========================= */
 
   useEffect(() => {
+    setIsLoaded(true);
 
-    setIsLoaded(true)
+    return () => {
+      setIsLoaded(false);
+    };
+  }, []);
 
-    return () =>
-      setIsLoaded(false)
-
-  }, [])
-
+  /* =========================
+     TYPING EFFECT
+  ========================= */
 
   const handleTyping = useCallback(() => {
-
     if (isTyping) {
-
       if (charIndex < WORDS[wordIndex].length) {
-
         setText(
-          prev =>
-            prev + WORDS[wordIndex][charIndex]
-        )
+          (prev) => prev + WORDS[wordIndex][charIndex]
+        );
 
         setCharIndex(
-          prev => prev + 1
-        )
-
+          (prev) => prev + 1
+        );
       } else {
-
         setTimeout(
           () => setIsTyping(false),
           PAUSE_DURATION
-        )
-
+        );
       }
-
     } else {
-
       if (charIndex > 0) {
-
         setText(
-          prev =>
-            prev.slice(0, -1)
-        )
+          (prev) => prev.slice(0, -1)
+        );
 
         setCharIndex(
-          prev => prev - 1
-        )
-
+          (prev) => prev - 1
+        );
       } else {
-
         setWordIndex(
-          prev =>
-            (prev + 1) % WORDS.length
-        )
+          (prev) => (prev + 1) % WORDS.length
+        );
 
-        setIsTyping(true)
-
+        setIsTyping(true);
       }
-
     }
-
   }, [
     charIndex,
     isTyping,
-    wordIndex
-  ])
-
+    wordIndex,
+  ]);
 
   useEffect(() => {
-
     const timeout = setTimeout(
       handleTyping,
       isTyping
         ? TYPING_SPEED
         : ERASING_SPEED
-    )
+    );
 
-    return () =>
-      clearTimeout(timeout)
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [handleTyping]);
 
-  }, [handleTyping])
-
+  /* =========================
+     RETURN
+  ========================= */
 
   return (
-
     <>
-
       <Helmet>
-
         <title>
           Nitish Pathak — Frontend Developer
         </title>
-
 
         <meta
           name="description"
           content="Official portfolio of Nitish Pathak, a Frontend Developer focused on creating modern, engaging and user-friendly digital experiences."
         />
 
-
         <meta
           name="robots"
           content="index, follow"
         />
-
 
         <meta
           property="og:title"
           content="Nitish Pathak — Frontend Developer"
         />
 
-
         <meta
           property="og:description"
           content="Portfolio of Nitish Pathak, Frontend Developer."
         />
 
-
         <meta
           property="og:type"
           content="website"
         />
-
 
         <script type="application/ld+json">
           {`
@@ -336,15 +337,12 @@ const Home = () => {
           }
           `}
         </script>
-
       </Helmet>
-
 
       <div
         className="min-h-screen bg-[#030014] overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%]"
         id="Home"
       >
-
         <div
           className={`relative z-10 transition-all duration-1000 ${
             isLoaded
@@ -352,26 +350,23 @@ const Home = () => {
               : "opacity-0"
           }`}
         >
-
           <div className="container mx-auto min-h-screen">
-
             <div className="flex flex-col lg:flex-row items-center justify-center h-screen md:justify-between gap-0 sm:gap-12 lg:gap-20">
 
-
-              {/* LEFT COLUMN */}
+              {/* =========================
+                  LEFT COLUMN
+              ========================= */}
 
               <div
                 className="w-full lg:w-1/2 space-y-6 sm:space-y-8 text-left lg:text-left order-1 lg:order-1 lg:mt-0"
                 data-aos="fade-right"
                 data-aos-delay="200"
               >
-
                 <div className="space-y-4 sm:space-y-6">
 
                   <StatusBadge />
 
                   <MainTitle />
-
 
                   {/* Typing Effect */}
 
@@ -380,15 +375,12 @@ const Home = () => {
                     data-aos="fade-up"
                     data-aos-delay="800"
                   >
-
-                    <span className="text-xl md:text-2xl bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent font-light">
+                    <span className="text-xl md:text-2xl font-medium bg-gradient-to-r from-gray-100 via-blue-200 to-purple-300 bg-clip-text text-transparent">
                       {text}
                     </span>
 
-                    <span className="w-[3px] h-6 bg-gradient-to-t from-[#6366f1] to-[#a855f7] ml-1 animate-blink"></span>
-
+                    <span className="w-[3px] h-6 bg-gradient-to-t from-[#6366f1] to-[#a855f7] ml-1 animate-blink" />
                   </div>
-
 
                   {/* Description */}
 
@@ -397,13 +389,11 @@ const Home = () => {
                     data-aos="fade-up"
                     data-aos-delay="1000"
                   >
-
-                    I build modern, responsive and user-friendly
-                    web experiences with a focus on clean design,
-                    functionality and continuous learning.
-
+                    I build modern, responsive and
+                    user-friendly web experiences with a
+                    focus on clean design, functionality
+                    and continuous learning.
                   </p>
-
 
                   {/* Tech Stack */}
 
@@ -412,7 +402,6 @@ const Home = () => {
                     data-aos="fade-up"
                     data-aos-delay="1200"
                   >
-
                     {TECH_STACK.map(
                       (tech, index) => (
                         <TechStack
@@ -421,9 +410,7 @@ const Home = () => {
                         />
                       )
                     )}
-
                   </div>
-
 
                   {/* CTA Buttons */}
 
@@ -432,7 +419,6 @@ const Home = () => {
                     data-aos="fade-up"
                     data-aos-delay="1400"
                   >
-
                     <CTAButton
                       href="#Portofolio"
                       text="Projects"
@@ -444,9 +430,7 @@ const Home = () => {
                       text="Contact"
                       icon={Mail}
                     />
-
                   </div>
-
 
                   {/* Social Links */}
 
@@ -455,7 +439,6 @@ const Home = () => {
                     data-aos="fade-up"
                     data-aos-delay="1600"
                   >
-
                     {SOCIAL_LINKS.map(
                       (social, index) => (
                         <SocialLink
@@ -464,15 +447,13 @@ const Home = () => {
                         />
                       )
                     )}
-
                   </div>
-
                 </div>
-
               </div>
 
-
-              {/* RIGHT COLUMN */}
+              {/* =========================
+                  RIGHT COLUMN
+              ========================= */}
 
               <div
                 className="w-full py-0 md:py-[10%] sm:py-0 lg:w-1/2 h-[260px] sm:h-[400px] lg:h-[600px] xl:h-[750px] relative flex items-center justify-center order-2 lg:order-2 mt-5 sm:mt-0"
@@ -485,8 +466,9 @@ const Home = () => {
                 data-aos="fade-left"
                 data-aos-delay="600"
               >
-
                 <div className="relative w-full opacity-90">
+
+                  {/* Glow */}
 
                   <div
                     className={`absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-3xl blur-3xl transition-all duration-700 ease-in-out ${
@@ -494,9 +476,9 @@ const Home = () => {
                         ? "opacity-50 scale-105"
                         : "opacity-20 scale-100"
                     }`}
-                  >
-                  </div>
+                  />
 
+                  {/* Animation */}
 
                   <div
                     className={`relative lg:left-12 z-10 w-full opacity-90 transform transition-transform duration-500 ${
@@ -505,7 +487,6 @@ const Home = () => {
                         : "scale-100"
                     }`}
                   >
-
                     <img
                       src="Animation1.gif"
                       alt="Nitish Pathak Developer Animation"
@@ -515,9 +496,9 @@ const Home = () => {
                           : "scale-[90%] sm:scale-[80%] md:scale-[80%] lg:scale-[80%]"
                       }`}
                     />
-
                   </div>
 
+                  {/* Background Glow */}
 
                   <div
                     className={`absolute inset-0 pointer-events-none transition-all duration-700 ${
@@ -526,35 +507,23 @@ const Home = () => {
                         : "opacity-20"
                     }`}
                   >
-
                     <div
                       className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-indigo-500/10 to-purple-500/10 blur-3xl animate-[pulse_6s_cubic-bezier(0.4,0,0.6,1)_infinite] transition-all duration-700 ${
                         isHovering
                           ? "scale-110"
                           : "scale-100"
                       }`}
-                    >
-                    </div>
-
+                    />
                   </div>
-
                 </div>
-
               </div>
 
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </>
+  );
+};
 
-  )
-
-}
-
-
-export default memo(Home)
+export default memo(Home);
